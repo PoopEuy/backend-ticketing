@@ -3,7 +3,7 @@ import { Model } from "sequelize";
 // const PROTECTED_ATTRIBUTES = ["password"];
 
 export default (sequelize, DataTypes) => {
-  class nojsLoggers extends Model {
+  class ticket extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -14,32 +14,32 @@ export default (sequelize, DataTypes) => {
     }
   }
 
-  nojsLoggers.init(
+  ticket.init(
     {
-      nojs: {
+      ticket_code: {
         type: DataTypes.STRING,
         allowNull: {
           args: false,
-          msg: "Please enter your nojs",
+          msg: "Please enter your ticket_code",
         },
         unique: {
           args: true,
-          msg: "nojs already exists",
+          msg: "ticket_code already exists",
         },
       },
 
-      time_local: DataTypes.STRING,
-      eh1: DataTypes.INTEGER,
-      eh2: DataTypes.INTEGER,
-      vsat_curr: DataTypes.INTEGER,
-      bts_curr: DataTypes.INTEGER,
-      load3: DataTypes.INTEGER,
-      batt_volt1: DataTypes.INTEGER,
-      batt_volt2: DataTypes.INTEGER,
-      edl1: DataTypes.INTEGER,
-      edl2: DataTypes.INTEGER,
-      pms_state: DataTypes.STRING,
-      json_data: DataTypes.STRING,
+      // ticket_code: DataTypes.STRING,
+      ts: DataTypes.STRING,
+      site_name: DataTypes.STRING,
+      status_site: DataTypes.STRING,
+      status_ticket: DataTypes.STRING,
+      counter: DataTypes.MEDIUMINT,
+      problem_id: DataTypes.JSON,
+      solusi_id: DataTypes.JSON,
+      response: DataTypes.TEXT,
+      response_at: DataTypes.STRING,
+      // created_at: DataTypes.DATE,
+      // updated_at: DataTypes.DATE,
 
       createdAt: {
         type: DataTypes.DATE,
@@ -54,12 +54,13 @@ export default (sequelize, DataTypes) => {
     },
     {
       sequelize,
-      modelName: "nojsLoggersModel",
-      tableName: "nojs_loggers",
+      modelName: "ticketModel",
+      tableName: "ticket",
       timestamps: true,
-      // timestamps: false,
+      // createdAt: false, // don't add createdAt attribute
+      // updatedAt: false, // don't add createdAt attribute
     }
   );
-  nojsLoggers.removeAttribute("id");
-  return nojsLoggers;
+  // ticket.removeAttribute("id");
+  return ticket;
 };

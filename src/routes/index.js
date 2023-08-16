@@ -1,13 +1,43 @@
-import nojsUsersControllers from "../controllers/nojsUsersController";
-import nojsLoggersControllers from "../controllers/nojsLoggersControllers";
+import detailsSitesControllers from "../controllers/detailsSitesControllers";
+import realtimeControllers from "../controllers/realtimeControllers";
+import realtimePmsControllers from "../controllers/realtimePmsControllers";
+import realtimeSlaControllers from "../controllers/realtimeSlaControllers";
+import prosesControllers from "../controllers/prosesControllers";
+import ticketControllers from "../controllers/ticketControllers";
+import problemController from "../controllers/problemController";
+import solusiController from "../controllers/solusiController";
+
 export default (app) => {
   //masterSiteConttroller
+  app.get("/getAllSites", detailsSitesControllers.getAllSites);
 
-  app.get("/getNojsUsers", nojsUsersControllers.getNojsUsers);
+  //realtimeControllers
+  app.get("/getRealtime", realtimeControllers.getRealtime);
+  app.get("/getWarning", realtimeControllers.getWarning);
 
-  //nojsLoggers
-  app.get("/getNojsLoggers", nojsLoggersControllers.getNojsLoggers);
-  app.post("/pushData", nojsLoggersControllers.pushData);
+  //realtimePmsControllers
+  app.get("/getRealtimePms", realtimePmsControllers.getRealtimePms);
+
+  //realtimeSlaControllers
+  app.get("/getRealtimeSla", realtimeSlaControllers.getRealtimeSla);
+
+  //prosesControllers
+  app.get("/startProses", prosesControllers.startProses);
+
+  //ticketControllers
+  app.get("/getAllTicket", ticketControllers.getAllTicket);
+  app.post("/createTicket", ticketControllers.createTicket);
+  app.post("/checkTicket", ticketControllers.checkTicket);
+
+  //problemController
+  app.get("/getAllProblem", problemController.getAllProblem);
+  app.post("/createProblem", problemController.createProblem);
+  app.post("/checkProblemId", problemController.checkProblemId);
+
+  //solusiController
+  app.get("/getAllSolusi", solusiController.getAllSolusi);
+  app.post("/createSolusi", solusiController.createSolusi);
+  app.post("/checkSolusiId", solusiController.checkSolusiId);
 
   // Create a catch-all route for testing the installation.
   app.all("*", (req, res) =>
