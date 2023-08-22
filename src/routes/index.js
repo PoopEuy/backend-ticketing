@@ -26,8 +26,10 @@ export default (app) => {
 
   //ticketControllers
   app.get("/getAllTicket", ticketControllers.getAllTicket);
+  app.get("/getOpenTicket", ticketControllers.getOpenTicket);
   app.post("/createTicket", ticketControllers.createTicket);
   app.post("/checkTicket", ticketControllers.checkTicket);
+  app.post("/updateResponse", ticketControllers.updateResponse);
 
   //problemController
   app.get("/getAllProblem", problemController.getAllProblem);

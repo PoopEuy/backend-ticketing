@@ -64,7 +64,7 @@ async function cron_filter() {
 }
 
 async function prosesData() {
-  const res = await axios.get(`http://localhost:5021/startProses`);
+  const res = await instanceBackEnd.post("startProses");
   // const jumlah_data = await res.data.jumlah;
   // console.log("JumlahData : " + jumlah_data);
 }

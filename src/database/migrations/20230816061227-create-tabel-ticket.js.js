@@ -30,9 +30,9 @@ module.exports = {
       problem_id: {
         type: Sequelize.JSON,
       },
-      solusi_id: {
-        type: Sequelize.JSON,
-      },
+      // solusi_id: {
+      //   type: Sequelize.JSON,
+      // },
       // problem_id: {
       //   allowNull: true,
       //   type: Sequelize.TEXT,
@@ -45,6 +45,9 @@ module.exports = {
         type: Sequelize.TEXT,
       },
       response_at: {
+        type: Sequelize.STRING(50),
+      },
+      closed_at: {
         type: Sequelize.STRING(50),
       },
       created_at: {

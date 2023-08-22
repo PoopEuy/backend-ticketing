@@ -35,12 +35,9 @@ export default (sequelize, DataTypes) => {
       status_ticket: DataTypes.STRING,
       counter: DataTypes.MEDIUMINT,
       problem_id: DataTypes.JSON,
-      solusi_id: DataTypes.JSON,
       response: DataTypes.TEXT,
       response_at: DataTypes.STRING,
-      // created_at: DataTypes.DATE,
-      // updated_at: DataTypes.DATE,
-
+      closed_at: DataTypes.STRING,
       createdAt: {
         type: DataTypes.DATE,
         allowNull: false,
