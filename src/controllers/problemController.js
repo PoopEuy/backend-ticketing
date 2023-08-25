@@ -18,6 +18,21 @@ export default {
     }
   },
 
+  async getSelect(req, res) {
+    try {
+      const response = await problemModel.findAll({
+        attributes: ["problem_id", "problem"],
+        order: [["problem_id", "ASC"]],
+      });
+      return res.status(201).send({ data: response });
+    } catch (e) {
+      console.log(e);
+      return res.status(500).send({
+        message: "Failed Get All Problem",
+      });
+    }
+  },
+
   async createProblem(req, res) {
     console.log("createProblem");
     try {

@@ -35,6 +35,7 @@ export default (app) => {
   app.get("/getAllProblem", problemController.getAllProblem);
   app.post("/createProblem", problemController.createProblem);
   app.post("/checkProblemId", problemController.checkProblemId);
+  app.get("/getSelect", problemController.getSelect);
 
   //solusiController
   app.get("/getAllSolusi", solusiController.getAllSolusi);

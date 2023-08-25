@@ -3,7 +3,7 @@ import route from "./src/routes";
 import dotenv from "dotenv";
 import cors from "cors";
 import * as cron from "node-cron";
-import axios from "axios";
+import { instanceBackEnd } from "./src/api/axios";
 
 const env = dotenv.config().parsed;
 
@@ -57,14 +57,15 @@ async function cron_filter() {
   let date_ob = new Date();
 
   // prosesData();
-  // await cron.schedule("00 00,10,20,35,40,41,43 * * * *", () => {
-  //   console.log("running a task : " + date_ob);
-  //   prosesData();
-  // });
+  await cron.schedule("00 49,53,40 * * * *", () => {
+    console.log("running a task : " + date_ob);
+    prosesData();
+  });
 }
 
 async function prosesData() {
-  const res = await instanceBackEnd.post("startProses");
-  // const jumlah_data = await res.data.jumlah;
-  // console.log("JumlahData : " + jumlah_data);
+  console.log("masuk proses data");
+  const res = await instanceBackEnd.get("startProses");
+  // const mess = await res.message;
+  console.log("mess : " + res);
 }

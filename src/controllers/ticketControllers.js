@@ -91,17 +91,25 @@ export default {
   },
 
   async updateResponse(req, res) {
-    const response_at = formatDate(new Date());
-
+    const statusTicket = req.body.status_ticket;
+    let response_at = formatDate(new Date());
+    let closed_at = null;
+    if (statusTicket === "closed") {
+      closed_at = formatDate(new Date());
+      response_at = req.body.responseAt;
+    }
     try {
       const ticket_code = req.body.ticket_code;
       const responseTicket = req.body.responseTicket;
+      const status_ticket = statusTicket;
 
       const response = await ticketModel.update(
         {
           ticket_code: ticket_code,
           response: responseTicket,
+          status_ticket: status_ticket,
           response_at: response_at,
+          closed_at: closed_at,
         },
         {
           where: { ticket_code: ticket_code },

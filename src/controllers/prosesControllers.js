@@ -7,7 +7,8 @@ export default {
       console.log("start proses");
 
       //getWarningData
-      const resWarning = await axios.get(`http://localhost:5021/getWarning`);
+      // const resWarning = await axios.get(`http://localhost:5021/getWarning`);
+      const resWarning = await instanceBackEnd.get("getWarning");
 
       pecahData(resWarning);
       return res.status(201).send({ message: "prosesberjalan" });
@@ -185,7 +186,7 @@ async function createTicket(site_name, counterTicket, ArrProblemId, i) {
     console.log("mulai create ticket");
     const date = Date.now();
     const ts = formatDate(new Date());
-    const ticket_code = site_name + "-" + date;
+    const ticket_code = "TTW-" + date + "-" + site_name;
     // console.log("ticket_code : " + ticket_code);
     // console.log("ArrProblemId : " + ArrProblemId);
 
