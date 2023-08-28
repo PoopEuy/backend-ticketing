@@ -158,7 +158,7 @@ async function checkTicket(site_name, ArrProblemId, i) {
       console.log("ticket_belum_ada, create_ticket_baru " + site_name);
 
       // checkProblem(site_name, dataWArning, i);
-      createTicket(site_name, counterTicket, ArrProblemId, i);
+      createTicketAuto(site_name, counterTicket, ArrProblemId, i);
     }
     if (ticketMsg == "sukses") {
       // console.log("cek_ticket_status");
@@ -167,7 +167,7 @@ async function checkTicket(site_name, ArrProblemId, i) {
       if (ticket_status == "closed") {
         console.log("ticket_sudah_ada, sudah_close, create_ticket_baru");
 
-        createTicket(site_name, counterTicket, ArrProblemId, i);
+        createTicketAuto(site_name, counterTicket, ArrProblemId, i);
         // checkProblem(site_name, dataWArning, i);
       }
 
@@ -181,7 +181,7 @@ async function checkTicket(site_name, ArrProblemId, i) {
   }
 }
 
-async function createTicket(site_name, counterTicket, ArrProblemId, i) {
+async function createTicketAuto(site_name, counterTicket, ArrProblemId, i) {
   try {
     console.log("mulai create ticket");
     const date = Date.now();
@@ -199,7 +199,10 @@ async function createTicket(site_name, counterTicket, ArrProblemId, i) {
       counter: counterTicket,
       problem_id: ArrProblemId,
     };
-    const resCreateTicket = await instanceBackEnd.post("createTicket", payload);
+    const resCreateTicket = await instanceBackEnd.post(
+      "createTicketAuto",
+      payload
+    );
     const createMess = await resCreateTicket.data.message;
 
     console.log(createMess + " : " + site_name);

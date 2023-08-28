@@ -75,10 +75,41 @@ export default {
     }
   },
 
-  async createTicket(req, res) {
+  async createTicketAuto(req, res) {
     console.log("createticket");
     try {
       await ticketModel.create(req.body);
+      return res
+        .status(201)
+        .send({ status: 201, message: "create ticket successfully" });
+    } catch (e) {
+      console.log(e);
+      return res.status(500).send({
+        message: "FailedCreateTicket",
+      });
+    }
+  },
+
+  async createTicketManual(req, res) {
+    console.log("createticketManual");
+    const site_name = req.body.site_name;
+    const date = Date.now();
+    const ts = formatDate(new Date());
+    const response_at = formatDate(new Date());
+    const ticket_code = "TTW-" + date + "-" + site_name;
+
+    try {
+      await ticketModel.create({
+        ticket_code: ticket_code,
+        ts: ts,
+        site_name: site_name,
+        status_sites: status_sites,
+        status_ticket: status_ticket,
+        counter: counter,
+        priblem_id: priblem_id,
+        reponse: reponse,
+        response_at: response_at,
+      });
       return res
         .status(201)
         .send({ status: 201, message: "create ticket successfully" });
