@@ -57,7 +57,7 @@ async function cron_filter() {
   let date_ob = new Date();
 
   // prosesData();
-  await cron.schedule("00 49,53,40 * * * *", () => {
+  await cron.schedule("00 00 04,16 * * *", () => {
     console.log("running a task : " + date_ob);
     prosesData();
   });

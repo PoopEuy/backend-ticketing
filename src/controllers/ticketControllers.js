@@ -93,21 +93,34 @@ export default {
   async createTicketManual(req, res) {
     console.log("createticketManual");
     const site_name = req.body.site_name;
+    const status_site = req.body.status_site;
+    const status_ticket = req.body.status_ticket;
+    const response = req.body.response;
+    const problem_id = req.body.problem_id;
+    const counter = req.body.counter;
     const date = Date.now();
     const ts = formatDate(new Date());
     const response_at = formatDate(new Date());
-    const ticket_code = "TTW-" + date + "-" + site_name;
+
+    var ticket_code = "";
+    if (status_site === "warning") {
+      ticket_code = "TTW-" + date + "-" + site_name;
+    }
+
+    if (status_site === "down") {
+      ticket_code = "TTD-" + date + "-" + site_name;
+    }
 
     try {
       await ticketModel.create({
         ticket_code: ticket_code,
         ts: ts,
         site_name: site_name,
-        status_sites: status_sites,
+        status_site: status_site,
         status_ticket: status_ticket,
         counter: counter,
-        priblem_id: priblem_id,
-        reponse: reponse,
+        problem_id: problem_id,
+        response: response,
         response_at: response_at,
       });
       return res
