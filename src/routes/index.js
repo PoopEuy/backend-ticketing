@@ -10,6 +10,8 @@ import solusiController from "../controllers/solusiController";
 export default (app) => {
   //masterSiteConttroller
   app.get("/getAllSites", detailsSitesControllers.getAllSites);
+  app.get("/getOpenEcom", detailsSitesControllers.getOpenEcom);
+  app.get("/getOpenLindu", detailsSitesControllers.getOpenLindu);
 
   //realtimeControllers
   app.get("/getRealtime", realtimeControllers.getRealtime);
@@ -27,6 +29,7 @@ export default (app) => {
   //ticketControllers
   app.get("/getAllTicket", ticketControllers.getAllTicket);
   app.get("/getOpenTicket", ticketControllers.getOpenTicket);
+  // app.get("/getOpenEcom", ticketControllers.getOpenEcom);
   app.post("/createTicketAuto", ticketControllers.createTicketAuto);
   app.post("/createTicketManual", ticketControllers.createTicketManual);
   app.post("/checkTicket", ticketControllers.checkTicket);

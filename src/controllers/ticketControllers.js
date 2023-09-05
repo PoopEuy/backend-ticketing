@@ -2,6 +2,7 @@ import { Op } from "sequelize";
 import models from "../models";
 
 const { ticketModel } = models;
+const { detailssitesModel } = models;
 
 export default {
   async getAllTicket(req, res) {
