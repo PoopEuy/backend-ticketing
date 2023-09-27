@@ -103,6 +103,14 @@ export default {
     const ts = formatDate(new Date());
     const response_at = formatDate(new Date());
 
+    var arrRessponse = [];
+    var resAtributes = {
+      text: response,
+      time: response_at,
+    };
+
+    arrRessponse.push(resAtributes);
+
     var ticket_code = "";
     if (status_site === "warning") {
       ticket_code = "TTW-" + date + "-" + site_name;
@@ -121,8 +129,7 @@ export default {
         status_ticket: status_ticket,
         counter: counter,
         problem_id: problem_id,
-        response: response,
-        response_at: response_at,
+        response: arrRessponse,
       });
       return res
         .status(201)
@@ -136,24 +143,30 @@ export default {
   },
 
   async updateResponse(req, res) {
+    var arrResponse = req.body.arr_response;
     const statusTicket = req.body.status_ticket;
+    const responseTicket = req.body.responseTicket;
     let response_at = formatDate(new Date());
-    let closed_at = null;
-    if (statusTicket === "closed") {
-      closed_at = formatDate(new Date());
-      response_at = req.body.responseAt;
-    }
-    try {
-      const ticket_code = req.body.ticket_code;
-      const responseTicket = req.body.responseTicket;
-      const status_ticket = statusTicket;
+    const ticket_code = req.body.ticket_code;
 
+    try {
+      let closed_at = null;
+      if (statusTicket === "closed") {
+        closed_at = formatDate(new Date());
+      }
+
+      const addResponse = {
+        text: responseTicket,
+        time: response_at,
+      };
+      arrResponse.push(addResponse);
+
+      const status_ticket = statusTicket;
       const response = await ticketModel.update(
         {
           ticket_code: ticket_code,
-          response: responseTicket,
+          response: arrResponse,
           status_ticket: status_ticket,
-          response_at: response_at,
           closed_at: closed_at,
         },
         {

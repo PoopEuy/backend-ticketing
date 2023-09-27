@@ -42,11 +42,11 @@ module.exports = {
       //   type: Sequelize.TEXT,
       // },
       response: {
-        type: Sequelize.TEXT,
+        type: Sequelize.JSON,
       },
-      response_at: {
-        type: Sequelize.STRING(50),
-      },
+      // response_at: {
+      //   type: Sequelize.STRING(50),
+      // },
       closed_at: {
         type: Sequelize.STRING(50),
       },

@@ -49,7 +49,7 @@ export default (app) => {
   // Create a catch-all route for testing the installation.
   app.all("*", (req, res) =>
     res.status(200).send({
-      message: "Hello World!",
+      message: "Hello World NEH!",
     })
   );
 };
