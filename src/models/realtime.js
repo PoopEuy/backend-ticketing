@@ -3,7 +3,7 @@ import { Model } from "sequelize";
 // const PROTECTED_ATTRIBUTES = ["password"];
 
 export default (sequelize, DataTypes) => {
-  class detailssites extends Model {
+  class realtime extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -14,7 +14,7 @@ export default (sequelize, DataTypes) => {
     }
   }
 
-  detailssites.init(
+  realtime.init(
     {
       // nojs: {
       //   type: DataTypes.STRING,
@@ -78,5 +78,5 @@ export default (sequelize, DataTypes) => {
       updatedAt: false,
     }
   );
-  return detailssites;
+  return realtime;
 };
