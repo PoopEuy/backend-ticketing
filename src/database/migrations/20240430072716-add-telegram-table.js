@@ -24,6 +24,9 @@ module.exports = {
       down_reason: {
         type: Sequelize.STRING,
       },
+      ticket_flag: {
+        type: Sequelize.BOOLEAN,
+      },
       created_at: {
         allowNull: false,
         type: Sequelize.DATE,
